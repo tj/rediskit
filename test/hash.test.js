@@ -23,6 +23,17 @@ module.exports = {
       done();
     });
   },
+  
+  '.del(key)': function(done){
+    tj.set('name', 'tj');
+    tj.set('age', 23);
+    should.equal(true, tj.del == tj.delete, 'del() delete() alias missing');
+    tj.del('age');
+    tj.all(function(err, obj){
+      obj.should.eql({ name: 'tj' });
+      done();
+    });
+  },
 
   after: function(){
     tj.client.end();
