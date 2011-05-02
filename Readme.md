@@ -10,6 +10,7 @@
 ## Running Tests
 
     $ npm install --dev
+    $ redis-server
     $ make test
 
 ## License 
