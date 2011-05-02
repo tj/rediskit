@@ -108,8 +108,8 @@ module.exports = {
     pets.rpush('d');
     pets.rpush('b');
     pets.sort.alpha.desc.limit(1, 3).end(function(err, pets){
-      
-      console.log(pets);
+      pets.should.eql(['c', 'b', 'a']);
+      done();
     });
   },
 
