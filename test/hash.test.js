@@ -24,6 +24,13 @@ module.exports = {
     });
   },
   
+  '.has(field, fn)': function(done){
+    tj.has('name', function(err, res){
+      res.should.equal(0);
+      done();
+    });
+  },
+  
   '.del(field)': function(done){
     tj.set('name', 'tj');
     tj.set('age', 23);
