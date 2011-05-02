@@ -1,7 +1,7 @@
 
 # RedisKit
 
-  Collection of Redis backed data structures for nodejs.
+  Collection of Redis backed data structures for nodejs. RedisKit aims to create first-class JavaScript objects of the primitives that Redis provies as well as higher level abstractions and interactions between the data types.
 
 ## Structures
 
