@@ -16,7 +16,6 @@ module.exports = {
     should.equal(true, names.card == names.length, 'card() length() alias is missing');
     names.card(function(err, cardinality){
       cardinality.should.equal(3);
-      names.client.end();
       done();
     });
   },
@@ -30,7 +29,6 @@ module.exports = {
     should.equal(true, names.rem == names.remove, 'rem() remove() alias is missing');
     names.members(function(err, arr){
       arr.should.eql(['guillermo', 'aaron']);
-      names.client.end();
       done();
     });
   },
@@ -45,7 +43,6 @@ module.exports = {
       yes.should.equal(1);
       names.ismember('tobi', function(err, yes){
         yes.should.equal(0);
-        names.client.end();
         done();
       });
     });
@@ -60,7 +57,6 @@ module.exports = {
       name.should.be.a('string');
       names.card(function(err, cardinality){
         cardinality.should.equal(2);
-        names.client.end();
         done();
       });
     });
@@ -75,7 +71,6 @@ module.exports = {
       name.should.be.a('string');
       names.card(function(err, cardinality){
         cardinality.should.equal(3);
-        names.client.end();
         done();
       });
     });
@@ -83,35 +78,33 @@ module.exports = {
   
   '.union(str)': function(done){
     var online = new Set('online')
-      , offline = new Set('offline', online.client);
+      , offline = new Set('offline');
 
     online.add('tj');
     online.add('guillermo');
     offline.add('aaron');
     online.union('offline', function(err, res){
       res.should.eql(['guillermo', 'aaron', 'tj']);
-      online.client.end();
       done();
     });
   },
   
   '.union(Set)': function(done){
     var online = new Set('online')
-      , offline = new Set('offline', online.client);
+      , offline = new Set('offline');
 
     online.add('tj');
     online.add('guillermo');
     offline.add('aaron');
     online.union(offline, function(err, res){
       res.should.eql(['guillermo', 'aaron', 'tj']);
-      online.client.end();
       done();
     });
   },
   
   '.diff(str)': function(done){
     var nums = new Set('nums')
-      , other = new Set('other', nums.client);
+      , other = new Set('other');
 
     nums.destroy();
     other.destroy();
@@ -123,14 +116,13 @@ module.exports = {
     nums.diff('other', function(err, res){
       should.equal(null, err);
       res.should.eql(['1']);
-      nums.client.end();
       done();
     });
   },
   
   '.diff(Set)': function(done){
     var nums = new Set('nums')
-      , other = new Set('other', nums.client);
+      , other = new Set('other');
 
     nums.destroy();
     other.destroy();
@@ -142,14 +134,13 @@ module.exports = {
     nums.diff(other, function(err, res){
       should.equal(null, err);
       res.should.eql(['1']);
-      nums.client.end();
       done();
     });
   },
   
   '.inter(str)': function(done){
     var nums = new Set('nums')
-      , other = new Set('other', nums.client);
+      , other = new Set('other');
 
     nums.destroy();
     other.destroy();
@@ -162,14 +153,13 @@ module.exports = {
     nums.inter('other', function(err, res){
       should.equal(null, err);
       res.should.eql(['2', '3']);
-      nums.client.end();
       done();
     });
   },
   
   '.inter(Set)': function(done){
     var nums = new Set('nums')
-      , other = new Set('other', nums.client);
+      , other = new Set('other');
 
     nums.destroy();
     other.destroy();
@@ -181,7 +171,6 @@ module.exports = {
     nums.inter(other, function(err, res){
       should.equal(null, err);
       res.should.eql(['2', '3']);
-      nums.client.end();
       done();
     });
   }

@@ -36,12 +36,7 @@ module.exports = {
     name.rename('username', function(err){
       should.equal(null, err);
       name.key.should.equal('username');
-      name.client.end();
       done();
     });
-  },
-  
-  after: function(){
-    name.client.end();
   }
 };

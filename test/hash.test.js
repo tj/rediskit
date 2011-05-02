@@ -69,9 +69,5 @@ module.exports = {
       vals.should.eql(['tj', 'holowaychuk']);
       done();
     });
-  },
-
-  after: function(){
-    tj.client.end();
   }
 };

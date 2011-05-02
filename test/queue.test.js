@@ -43,9 +43,5 @@ module.exports = {
         });
       })
     });
-  },
-  
-  after: function(){
-    queue.client.end();
   }
 };

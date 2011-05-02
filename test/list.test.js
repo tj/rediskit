@@ -100,9 +100,5 @@ module.exports = {
       pet.should.equal('loki');
       done();
     });
-  },
-
-  after: function(){
-    pets.client.end();
   }
 };

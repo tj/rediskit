@@ -94,9 +94,5 @@ module.exports = {
       val.should.equal('7');
       done();
     });
-  },
-  
-  after: function(){
-    str.client.end();
   }
 };
