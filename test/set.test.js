@@ -35,6 +35,22 @@ module.exports = {
     });
   },
   
+  '.ismember(str)': function(done){
+    var names = new Set('names');
+    names.add('tj');
+    names.add('aaron');
+    names.add('guillermo');
+    should.equal(true, names.ismember == names.has, 'ismember() has() alias is missing');
+    names.ismember('tj', function(err, yes){
+      yes.should.equal(1);
+      names.ismember('tobi', function(err, yes){
+        yes.should.equal(0);
+        names.client.end();
+        done();
+      });
+    });
+  },
+  
   '.pop()': function(done){
     var names = new Set('names');
     names.add('tj');
