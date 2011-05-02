@@ -19,5 +19,19 @@ module.exports = {
       names.client.end();
       done();
     });
+  },
+  
+  '.rem(str)': function(done){
+    var names = new Set('names');
+    names.add('tj');
+    names.add('aaron');
+    names.add('guillermo');
+    names.rem('tj');
+    should.equal(true, names.rem == names.remove, 'rem() remove() alias is missing');
+    names.card(function(err, cardinality){
+      cardinality.should.equal(2);
+      names.client.end();
+      done();
+    });
   }
 };
