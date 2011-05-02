@@ -4,8 +4,10 @@
  */
 
 var kit = require('../')
+  , Set = kit.Set
   , redis = require('redis')
-  , client = redis.createClient();
+  , ids = new kit.String('users');
+
 
 function User(name) {
   this.name = name;
@@ -15,7 +17,7 @@ User.find = function(ids, fn){
   var pending = ids.length
     , users = [];
   ids.forEach(function(id){
-    client.get('user:' + id + ':name', function(err, name){
+    new kit.String('user:' + id + ':name').get(function(err, name){
       var user = new User(name);
       user.id = id;
       users.push(user);
@@ -26,41 +28,37 @@ User.find = function(ids, fn){
 
 User.prototype.follow = function(user, fn){
   fn = fn || function(){};
-  client.sadd('user:' + this.id + ':follows', user.id);
-  client.sadd('user:' + user.id + ':followers', this.id, fn);
+  this._following.add(user.id);
+  user._followers.add(this.id, fn);
 };
 
 User.prototype.followers = function(fn){
-  client.smembers('user:' + this.id + ':followers', function(err, ids){
-    if (err) return fn(err);
+  this._followers.all(function(err, ids){
     User.find(ids, fn);
   });
 };
 
 User.prototype.follows = function(fn){
-  client.smembers('user:' + this.id + ':follows', function(err, ids){
-    if (err) return fn(err);
+  this._following.all(function(err, ids){
     User.find(ids, fn);
   });
 };
 
 User.prototype.friends = function(fn){
-  client.sinter(
-      'user:' + this.id + ':followers'
-    , 'user:' + this.id + ':follows'
-    , function(err, ids){
-      if (err) return fn(err);
-      User.find(ids, fn);
-    });
+  this._followers.intersect(this._following, function(err, ids){
+    User.find(ids, fn);
+  });
 };
 
 User.prototype.save = function(fn){
   var self = this;
   fn = fn || function(){};
-  client.incr('users', function(err, id){
-    if (err) return fn(err);
+  ids.incr(function(err, id){
     self.id = id;
-    client.set('user:' + id + ':name', self.name);
+    self._followers = new Set('user:' + id + ':followers');
+    self._following = new Set('user:' + id + ':following');
+    self._name = new kit.String('user:' + id + ':name');
+    self._name.set(self.name);
     fn(null, id);
   });
 };
@@ -72,29 +70,29 @@ var tobi = new User('tobi')
 tobi.save();
 loki.save();
 jane.save(function(){
+  var pending = 3;
+
   tobi.follow(loki);
   loki.follow(tobi);
   loki.follow(jane);
   jane.follow(tobi);
 
   tobi.followers(function(err, users){
-    console.log();
     console.log('  tobi has %d followers: ', users.length);
     display(users);
+    --pending || process.exit(0);
   });
 
   tobi.follows(function(err, users){
-    console.log();
     console.log('  tobi is following %d users: ', users.length);
     display(users);
+    --pending || process.exit(0);
   });
   
   tobi.friends(function(err, users){
-    console.log();
-    console.log('  tobi has %d friend:', users.length);
+    console.log('  tobi has %d friend(s):', users.length);
     display(users);
-    console.log();
-    client.end();
+    --pending || process.exit(0);
   });
 });
 
