@@ -33,5 +33,20 @@ module.exports = {
       names.client.end();
       done();
     });
+  },
+  
+  '.pop()': function(done){
+    var names = new Set('names');
+    names.add('tj');
+    names.add('aaron');
+    names.add('guillermo');
+    names.pop(function(err, name){
+      name.should.be.a('string');
+      names.card(function(err, cardinality){
+        cardinality.should.equal(2);
+        names.client.end();
+        done();
+      });
+    });
   }
 };
