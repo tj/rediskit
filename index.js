@@ -1,2 +1,2 @@
 
-module.exports = require('./lib/lineup');
+module.exports = require('./lib/redisoo');
