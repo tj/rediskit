@@ -79,5 +79,19 @@ module.exports = {
         done();
       });
     });
+  },
+  
+  '.union()': function(done){
+    var online = new Set('online')
+      , offline = new Set('offline', online.client);
+
+    online.add('tj');
+    online.add('guillermo');
+    offline.add('aaron');
+    online.union('offline', function(err, res){
+      res.should.eql(['guillermo', 'aaron', 'tj']);
+      online.client.end();
+      done();
+    });
   }
 };
