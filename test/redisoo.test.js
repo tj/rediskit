@@ -3,11 +3,11 @@
  * Module dependencies.
  */
 
-var oo = require('redisoo')
+var kit = require('rediskit')
   , should = require('should');
 
 module.exports = {
   'test .version': function(){
-    oo.version.should.match(/^\d+\.\d+\.\d+$/);
+    kit.version.should.match(/^\d+\.\d+\.\d+$/);
   }
 };
