@@ -20,5 +20,26 @@ module.exports = {
       list.client.end();
       done();
     });
+  },
+  
+  '.sort by': function(done){
+    var list = new List('pets')
+      , client = list.client;
+    list.destroy();
+    list.rpush('tobi');
+    list.rpush('jane');
+    list.rpush('loki');
+    list.rpush('bandit');
+    list.rpush('ewald');
+    client.set('tobi:age', 1);
+    client.set('loki:age', .5);
+    client.set('jane:age', 3);
+    client.set('ewald:age', 4);
+    client.set('bandit:age', 6);
+    list.sort.by('*:age').end(function(err, res){
+      res.should.eql(['loki', 'tobi', 'jane', 'ewald', 'bandit']);
+      client.end();
+      done();
+    });
   }
 };
