@@ -3,11 +3,12 @@
  * Module dependencies.
  */
 
-var Key = require('rediskit').Key
+var String = require('rediskit').String
+  , Key = require('rediskit').Key
   , should = require('should')
   , redis = require('redis');
 
-var name = new Key('name');
+var name = new String('name');
 
 module.exports = {
   setup: function(fn){
@@ -30,7 +31,7 @@ module.exports = {
   },
 
   '.rename(name, fn)': function(done){
-    var name = new Key('name');
+    var name = new String('name');
     name.set('tj');
     name.rename('username', function(err){
       should.equal(null, err);
