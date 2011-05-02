@@ -14,6 +14,26 @@
 
     $ npm install rediskit
 
+## Example
+
+    var list = new List('pets')
+      , client = list.client
+      , tobi = new Hash('pet:tobi', client)
+      , loki = new Hash('pet:loki', client)
+      , jane = new Hash('pet:jane', client);
+
+    list.rpush('tobi');
+    list.rpush('jane');
+    list.rpush('loki');
+
+    tobi.set('age', 1);
+    loki.set('age', 0.5);
+    jane.set('age', 3);
+
+    list.sort.by('pet:*->age').get('#').get('pet:*->age').end(function(err, res){
+      res.should.eql(['loki', '0.5', 'tobi', '1', 'jane', '3']);
+    });
+
 ## Running Tests
 
     $ npm install --dev
