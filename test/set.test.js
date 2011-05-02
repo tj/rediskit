@@ -107,5 +107,43 @@ module.exports = {
       online.client.end();
       done();
     });
+  },
+  
+  '.diff(str)': function(done){
+    var nums = new Set('nums')
+      , other = new Set('other', nums.client);
+
+    nums.destroy();
+    other.destroy();
+    nums.add(1);
+    nums.add(2);
+    nums.add(3);
+    other.add(2);
+    other.add(3);
+    nums.diff('other', function(err, res){
+      should.equal(null, err);
+      res.should.eql(['1']);
+      nums.client.end();
+      done();
+    });
+  },
+  
+  '.diff(Set)': function(done){
+    var nums = new Set('nums')
+      , other = new Set('other', nums.client);
+
+    nums.destroy();
+    other.destroy();
+    nums.add(1);
+    nums.add(2);
+    nums.add(3);
+    other.add(2);
+    other.add(3);
+    nums.diff(other, function(err, res){
+      should.equal(null, err);
+      res.should.eql(['1']);
+      nums.client.end();
+      done();
+    });
   }
 };
