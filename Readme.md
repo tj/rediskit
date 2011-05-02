@@ -8,6 +8,7 @@
     - Base
       - List
         - Queue
+      - Hash
 
 ## Installation
 
