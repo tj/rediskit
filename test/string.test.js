@@ -31,6 +31,14 @@ module.exports = {
     });
   },
   
+  'range': function(done){
+    str.set('tj holowaychuk');
+    str.range(0, 1, function(err, str){
+      str.should.equal('tj');
+      done();
+    });
+  },
+  
   after: function(){
     str.client.end();
   }
