@@ -5,7 +5,7 @@
 
 ## Structures
 
-    - Base
+    - Key
       - List
         - Queue
       - Hash
