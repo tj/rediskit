@@ -48,5 +48,20 @@ module.exports = {
         done();
       });
     });
+  },
+  
+  '.random()': function(done){
+    var names = new Set('names');
+    names.add('tj');
+    names.add('aaron');
+    names.add('guillermo');
+    names.random(function(err, name){
+      name.should.be.a('string');
+      names.card(function(err, cardinality){
+        cardinality.should.equal(3);
+        names.client.end();
+        done();
+      });
+    });
   }
 };
