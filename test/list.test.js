@@ -76,6 +76,18 @@ module.exports = {
       done();
     });
   },
+  
+  '.index()': function(done){
+    pets.rpush('tobi');
+    pets.rpush('loki');
+    pets.index(0, function(err, pet){
+      pet.should.equal('tobi');
+    });
+    pets.index(1, function(err, pet){
+      pet.should.equal('loki');
+      done();
+    });
+  },
 
   after: function(){
     pets.client.end();
