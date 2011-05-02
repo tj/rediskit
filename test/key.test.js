@@ -14,6 +14,14 @@ module.exports = {
     name.destroy(fn);
   },
 
+  '.type()': function(done){
+    name.set('wahoo');
+    name.type(function(err, type){
+      type.should.equal('string');
+      done();
+    });
+  },
+
   '.ttl()': function(done){
     name.ttl(function(err, seconds){
       seconds.should.equal(-1);
