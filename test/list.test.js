@@ -80,9 +80,7 @@ module.exports = {
   '.index()': function(done){
     pets.rpush('tobi');
     pets.rpush('loki');
-    pets.index(0, function(err, pet){
-      pet.should.equal('tobi');
-    });
+    should.equal(true, pets.at == pets.index, 'index() at() alias missing');
     pets.index(1, function(err, pet){
       pet.should.equal('loki');
       done();
