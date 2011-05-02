@@ -31,11 +31,27 @@ module.exports = {
     });
   },
   
-  'range': function(done){
+  'range(start, end)': function(done){
     str.set('tj holowaychuk');
     should.equal(true, str.slice == str.range, 'range() missing slice() alias');
     str.range(0, -5, function(err, str){
       str.should.equal('tj holoway');
+      done();
+    });
+  },
+  
+  'first(n)': function(done){
+    str.set('tj holowaychuk');
+    str.first(2, function(err, str){
+      str.should.equal('tj');
+      done();
+    });
+  },
+  
+  'last(n)': function(done){
+    str.set('tj holowaychuk');
+    str.last(2, function(err, str){
+      str.should.equal('uk');
       done();
     });
   },
