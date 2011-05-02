@@ -43,6 +43,16 @@ module.exports = {
       done();
     });
   },
+  
+  '.fields()': function(done){
+    tj.set('first', 'tj');
+    tj.set('last', 'holowaychuk');
+    should.equal(true, tj.fields == tj.keys, 'keys() fields() alias missing');
+    tj.keys(function(err, fields){
+      fields.should.eql(['first', 'last']);
+      done();
+    });
+  },
 
   after: function(){
     tj.client.end();
