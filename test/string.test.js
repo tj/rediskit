@@ -33,8 +33,8 @@ module.exports = {
   
   'range': function(done){
     str.set('tj holowaychuk');
-    str.range(0, 1, function(err, str){
-      str.should.equal('tj');
+    str.range(0, -5, function(err, str){
+      str.should.equal('tj holoway');
       done();
     });
   },
