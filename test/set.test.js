@@ -145,5 +145,43 @@ module.exports = {
       nums.client.end();
       done();
     });
+  },
+  
+  '.inter(str)': function(done){
+    var nums = new Set('nums')
+      , other = new Set('other', nums.client);
+
+    nums.destroy();
+    other.destroy();
+    nums.add(1);
+    nums.add(2);
+    nums.add(3);
+    other.add(2);
+    other.add(3);
+    nums.inter('other', function(err, res){
+      should.equal(null, err);
+      res.should.eql(['2', '3']);
+      nums.client.end();
+      done();
+    });
+  },
+  
+  '.inter(Set)': function(done){
+    var nums = new Set('nums')
+      , other = new Set('other', nums.client);
+
+    nums.destroy();
+    other.destroy();
+    nums.add(1);
+    nums.add(2);
+    nums.add(3);
+    other.add(2);
+    other.add(3);
+    nums.inter(other, function(err, res){
+      should.equal(null, err);
+      res.should.eql(['2', '3']);
+      nums.client.end();
+      done();
+    });
   }
 };
