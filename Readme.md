@@ -5,8 +5,9 @@
 
 ## Structures
 
-  - List
-  - Queue
+    - Base
+      - List
+        - Queue
 
 ## Installation
 
