@@ -76,7 +76,30 @@ jane.save(function(){
   loki.follow(tobi);
   loki.follow(jane);
   jane.follow(tobi);
+
+  tobi.followers(function(err, users){
+    console.log();
+    console.log('  tobi has %d followers: ', users.length);
+    display(users);
+  });
+
+  tobi.follows(function(err, users){
+    console.log();
+    console.log('  tobi is following %d users: ', users.length);
+    display(users);
+  });
+  
   tobi.friends(function(err, users){
-    console.log(users);
+    console.log();
+    console.log('  tobi has %d friend:', users.length);
+    display(users);
+    console.log();
+    client.end();
   });
 });
+
+function display(users) {
+  users.forEach(function(user){
+    console.log('    - %s', user.name);
+  });
+}
