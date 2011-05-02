@@ -28,8 +28,8 @@ module.exports = {
     names.add('guillermo');
     names.rem('tj');
     should.equal(true, names.rem == names.remove, 'rem() remove() alias is missing');
-    names.members(function(err, names){
-      names.should.eql(['guillermo', 'aaron']);
+    names.members(function(err, arr){
+      arr.should.eql(['guillermo', 'aaron']);
       names.client.end();
       done();
     });
