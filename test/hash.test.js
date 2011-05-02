@@ -53,6 +53,16 @@ module.exports = {
       done();
     });
   },
+  
+  '.vals()': function(done){
+    tj.set('first', 'tj');
+    tj.set('last', 'holowaychuk');
+    should.equal(true, tj.values == tj.vals, 'vals() values() alias missing');
+    tj.values(function(err, vals){
+      vals.should.eql(['tj', 'holowaychuk']);
+      done();
+    });
+  },
 
   after: function(){
     tj.client.end();
