@@ -9,8 +9,8 @@
 
 ## Running Tests
 
-  $ npm install --dev
-  $ make test
+    $ npm install --dev
+    $ make test
 
 ## License 
 
