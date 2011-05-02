@@ -23,6 +23,20 @@ module.exports = {
     });
   },
   
+  '.sort.limit(count)': function(done){
+    var list = new List('nums');
+    list.destroy();
+    list.rpush(1);
+    list.rpush(2);
+    list.rpush(3);
+    list.rpush(4);
+    list.sort.desc.limit(2).end(function(err, res){
+      res.should.eql(['4', '3']);
+      list.client.end();
+      done();
+    });
+  },
+  
   '.sort.by(pattern)': function(done){
     var list = new List('pets')
       , client = list.client;
