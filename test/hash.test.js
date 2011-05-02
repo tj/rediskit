@@ -34,6 +34,15 @@ module.exports = {
       done();
     });
   },
+  
+  '.length()': function(done){
+    tj.set('first', 'tj');
+    tj.set('last', 'holowaychuk');
+    tj.length(function(err, len){
+      len.should.equal(2);
+      done();
+    });
+  },
 
   after: function(){
     tj.client.end();
