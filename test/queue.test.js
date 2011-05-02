@@ -45,14 +45,6 @@ module.exports = {
     });
   },
   
-  '.push(obj)': function(done){
-    queue.push({ some: 'stuff' });
-    queue.pop(function(err, obj){
-      obj.should.eql({ some: 'stuff' });
-      done();
-    });
-  },
-  
   after: function(){
     queue.client.end();
   }
