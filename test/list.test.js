@@ -53,6 +53,20 @@ module.exports = {
       done();
     });
   },
+  
+  '.trim(start, stop)': function(done){
+    pets.rpush('tobi');
+    pets.rpush('loki');
+    pets.rpush('jane');
+    pets.rpush('ewald');
+    pets.rpush('bandit');
+    pets.trim(1, 3, function(err){
+      pets.range(0, -1, function(err, pets){
+        pets.should.eql(['loki', 'jane', 'ewald']);
+        done();
+      });
+    });
+  },
 
   after: function(){
     pets.client.end();
