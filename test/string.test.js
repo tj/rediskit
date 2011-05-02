@@ -56,6 +56,46 @@ module.exports = {
     });
   },
   
+  'incr()': function(done){
+    str.set('10');
+    str.incr();
+    str.incr();
+    str.incr();
+    str.get(function(err, val){
+      val.should.equal('13');
+      done();
+    });
+  },
+  
+  'incrby()': function(done){
+    str.set('10');
+    str.incrby(3);
+    str.get(function(err, val){
+      val.should.equal('13');
+      done();
+    });
+  },
+  
+  'decr()': function(done){
+    str.set('10');
+    str.decr();
+    str.decr();
+    str.decr();
+    str.get(function(err, val){
+      val.should.equal('7');
+      done();
+    });
+  },
+  
+  'decrby()': function(done){
+    str.set('10');
+    str.decrby(3);
+    str.get(function(err, val){
+      val.should.equal('7');
+      done();
+    });
+  },
+  
   after: function(){
     str.client.end();
   }
