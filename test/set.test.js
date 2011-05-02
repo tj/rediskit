@@ -158,6 +158,7 @@ module.exports = {
     nums.add(3);
     other.add(2);
     other.add(3);
+    should.equal(true, nums.inter == nums.intersect, 'Set inter() alias intersect() missing');
     nums.inter('other', function(err, res){
       should.equal(null, err);
       res.should.eql(['2', '3']);
