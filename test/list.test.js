@@ -68,6 +68,21 @@ module.exports = {
     });
   },
   
+  '.remove(count, value)': function(done){
+    pets.rpush('tobi');
+    pets.rpush('loki');
+    pets.rpush('jane');
+    pets.rpush('jane');
+    pets.rpush('jane');
+    pets.remove(2, 'jane', function(err, removed){
+      removed.should.equal(2);
+      pets.length(function(err, len){
+        len.should.equal(3);
+        done();
+      });
+    });
+  },
+  
   '.all()': function(done){
     pets.rpush('tobi');
     pets.rpush('loki');
