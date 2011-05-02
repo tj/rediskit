@@ -1,11 +1,16 @@
 
-# Redis OO
+# RedisKit
 
   Collection of Redis backed data structures for nodejs.
 
 ## Structures
 
+  - List
   - Queue
+
+## Installation
+
+    $ npm install rediskit
 
 ## Running Tests
 

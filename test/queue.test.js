@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var Queue = require('redisoo').Queue
+var Queue = require('rediskit').Queue
   , should = require('should')
   , redis = require('redis');
 

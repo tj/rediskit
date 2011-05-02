@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var List = require('redisoo').List
+var List = require('rediskit').List
   , should = require('should')
   , redis = require('redis');
 

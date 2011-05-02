@@ -1,2 +1,2 @@
 
-module.exports = require('./lib/redisoo');
+module.exports = require('./lib/rediskit');
