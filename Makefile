@@ -1,5 +1,7 @@
 
 test:
-	@expresso -I lib --serial
+	@./node_modules/expresso/bin/expresso \
+	  -I lib \
+	  --serial
 
 .PHONY: test
