@@ -14,7 +14,7 @@ module.exports = {
     tj.destroy(fn);
   },
 
-  '.set(key, val)': function(done){
+  '.set(field, val)': function(done){
     tj.set('name', 'tj');
     tj.set('age', 23);
     should.equal(true, tj.getall == tj.all, 'getall() all() alias missing');
@@ -24,7 +24,7 @@ module.exports = {
     });
   },
   
-  '.del(key)': function(done){
+  '.del(field)': function(done){
     tj.set('name', 'tj');
     tj.set('age', 23);
     should.equal(true, tj.del == tj.delete, 'del() delete() alias missing');
