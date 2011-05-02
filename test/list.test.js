@@ -67,6 +67,15 @@ module.exports = {
       });
     });
   },
+  
+  '.all()': function(done){
+    pets.rpush('tobi');
+    pets.rpush('loki');
+    pets.all(function(err, pets){
+      pets.should.eql(['tobi', 'loki']);
+      done();
+    });
+  },
 
   after: function(){
     pets.client.end();
