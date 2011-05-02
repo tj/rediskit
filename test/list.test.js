@@ -102,6 +102,17 @@ module.exports = {
     });
   },
 
+  '.sort': function(done){
+    pets.rpush('a');
+    pets.rpush('c');
+    pets.rpush('d');
+    pets.rpush('b');
+    pets.sort.alpha.desc.limit(1, 3).end(function(err, pets){
+      
+      console.log(pets);
+    });
+  },
+
   after: function(){
     pets.client.end();
   }
