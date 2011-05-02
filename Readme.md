@@ -36,7 +36,7 @@
 
 ## Running Tests
 
-    $ npm install --dev
+    $ npm install
     $ redis-server
     $ make test
 
