@@ -18,9 +18,9 @@
 
     var list = new List('pets')
       , client = list.client
-      , tobi = new Hash('pet:tobi', client)
-      , loki = new Hash('pet:loki', client)
-      , jane = new Hash('pet:jane', client);
+      , tobi = new Hash('pet:tobi')
+      , loki = new Hash('pet:loki')
+      , jane = new Hash('pet:jane');
 
     list.rpush('tobi');
     list.rpush('jane');
