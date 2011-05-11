@@ -8,6 +8,7 @@
     - Key
       - List
         - Queue
+        - CappedList
       - Hash
 
 ## Installation
