@@ -17,7 +17,6 @@
 ## Example
 
     var list = new List('pets')
-      , client = list.client
       , tobi = new Hash('pet:tobi')
       , loki = new Hash('pet:loki')
       , jane = new Hash('pet:jane');
