@@ -1,14 +1,25 @@
 {
-    "name": "rediskit"
-  , "version": "0.0.2"
-  , "description": "Redis backed data structures"
-  , "keywords": ["redis", "queue"]
-  , "author": "TJ Holowaychuk <tj@vision-media.ca>"
-  , "dependencies": { "redis" : "0.6.x" }
-  , "devDependencies": {
-      "expresso": ">= 0.0.1"
-    , "should": ">= 0.0.1"
-  }
-  , "main": "index"
-  , "engines": { "node": "0.4.x" }
+    "name": "rediskit",
+    "version": "0.0.2",
+    "description": "Redis backed data structures",
+    "keywords": [
+        "redis",
+        "queue"
+    ],
+    "author": "TJ Holowaychuk <tj@vision-media.ca>",
+    "dependencies": {
+        "redis": "0.6.x"
+    },
+    "devDependencies": {
+        "expresso": ">= 0.0.1",
+        "should": ">= 0.0.1"
+    },
+    "main": "index",
+    "engines": {
+        "node": "0.4.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/visionmedia/rediskit.git"
+    }
 }
