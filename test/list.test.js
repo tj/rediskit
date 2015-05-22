@@ -1,20 +1,21 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var List = require('rediskit').List
-  , should = require('should')
-  , redis = require('redis');
+var should = require('should');
+var assert = require('assert');
+var List = require('../').List;
 
-var pets = new List('pets');
+describe('List Test', function(){
 
-module.exports = {
-  setup: function(fn){
-    pets.destroy(fn);
-  },
+  var pets = new List('pets');
+  beforeEach(function(done) {
+    pets.destroy(done);
+  });
 
-  '.rpush(str)': function(done){
+  it('rpush test', function(done) {
     pets.rpush('tobi');
     pets.rpush('loki');
     pets.rpush('jane');
@@ -26,9 +27,9 @@ module.exports = {
         done();
       });
     });
-  },
-  
-  '.lpush(str)': function(done){
+  });
+
+  it('lpush test', function(done) {
     pets.lpush('tobi');
     pets.lpush('loki');
     pets.lpush('jane');
@@ -40,9 +41,9 @@ module.exports = {
         done();
       });
     });
-  },
-  
-  '.range(start, stop)': function(done){
+  });
+
+  it('range test', function(done) {
     pets.rpush('tobi');
     pets.rpush('loki');
     pets.rpush('jane');
@@ -52,9 +53,9 @@ module.exports = {
       pets.should.eql(['loki', 'jane', 'ewald']);
       done();
     });
-  },
-  
-  '.trim(start, stop)': function(done){
+  });
+
+  it('trim test', function(done) {
     pets.rpush('tobi');
     pets.rpush('loki');
     pets.rpush('jane');
@@ -66,9 +67,9 @@ module.exports = {
         done();
       });
     });
-  },
-  
-  '.remove(count, value)': function(done){
+  });
+
+  it('remove test', function(done) {
     pets.rpush('tobi');
     pets.rpush('loki');
     pets.rpush('jane');
@@ -81,18 +82,18 @@ module.exports = {
         done();
       });
     });
-  },
-  
-  '.all()': function(done){
+  });
+
+  it('all test', function(done) {
     pets.rpush('tobi');
     pets.rpush('loki');
     pets.all(function(err, pets){
       pets.should.eql(['tobi', 'loki']);
       done();
     });
-  },
-  
-  '.index()': function(done){
+  });
+
+  it('index test', function(done) {
     pets.rpush('tobi');
     pets.rpush('loki');
     should.equal(true, pets.at == pets.index, 'index() at() alias missing');
@@ -100,5 +101,5 @@ module.exports = {
       pet.should.equal('loki');
       done();
     });
-  }
-};
+  });
+});

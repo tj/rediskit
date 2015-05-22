@@ -1,15 +1,17 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var List = require('rediskit').List
-  , Hash = require('rediskit').Hash
-  , should = require('should')
-  , redis = require('redis');
+var should = require('should');
+var assert = require('assert');
+var List = require('../').List;
+var Hash = require('../').Hash;
 
-module.exports = {
-  '.sort.alpha.desc': function(done){
+describe('Sort Test', function(){
+
+  it('sort.alpha.desc test', function(done) {
     var list = new List('letters');
     list.destroy();
     list.rpush('a');
@@ -20,9 +22,10 @@ module.exports = {
       res.should.eql(['c', 'b', 'a']);
       done();
     });
-  },
-  
-  '.sort.limit(count)': function(done){
+
+  });
+
+  it('sort.limit(count) test', function(done) {
     var list = new List('nums');
     list.destroy();
     list.rpush(1);
@@ -33,9 +36,10 @@ module.exports = {
       res.should.eql(['4', '3']);
       done();
     });
-  },
-  
-  '.sort.by(pattern)': function(done){
+
+  });
+
+  it('sort.by(pattern) test', function(done) {
     var list = new List('pets')
       , client = list.client;
     list.destroy();
@@ -53,9 +57,10 @@ module.exports = {
       res.should.eql(['loki', 'tobi', 'jane', 'ewald', 'bandit']);
       done();
     });
-  },
-  
-  '.sort.get(pattern)': function(done){
+
+  });
+
+  it('sort.get(pattern) test', function(done) {
     var list = new List('pets')
       , client = list.client
       , tobi = new Hash('pet:tobi')
@@ -75,5 +80,7 @@ module.exports = {
       res.should.eql(['loki', '0.5', 'tobi', '1', 'jane', '3']);
       done();
     });
-  }
-};
+
+  });
+
+});

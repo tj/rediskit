@@ -1,13 +1,18 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var kit = require('rediskit')
-  , should = require('should');
+var should = require('should');
+var assert = require('assert');
+var kit = require('../');
 
-module.exports = {
-  'test .version': function(){
+describe('Rediskit Test', function(){
+
+  it('version test', function(done) {
     kit.version.should.match(/^\d+\.\d+\.\d+$/);
-  }
-};
+    done();
+  });
+
+});

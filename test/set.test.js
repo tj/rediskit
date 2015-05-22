@@ -1,14 +1,16 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var Set = require('rediskit').Set
-  , should = require('should')
-  , redis = require('redis');
+var should = require('should');
+var assert = require('assert');
+var Set = require('../').Set;
 
-module.exports = {
-  '.add(str)': function(done){
+describe('Set Test', function(){
+
+  it('add(str) test', function(done) {
     var names = new Set('names');
     names.add('tj');
     names.add('aaron');
@@ -18,9 +20,10 @@ module.exports = {
       cardinality.should.equal(3);
       done();
     });
-  },
-  
-  '.rem(str)': function(done){
+
+  });
+
+  it('rem(str) test', function(done) {
     var names = new Set('names');
     names.add('tj');
     names.add('aaron');
@@ -31,9 +34,10 @@ module.exports = {
       arr.should.eql(['guillermo', 'aaron']);
       done();
     });
-  },
-  
-  '.ismember(str)': function(done){
+
+  });
+
+  it('ismember(str) test', function(done) {
     var names = new Set('names');
     names.add('tj');
     names.add('aaron');
@@ -46,37 +50,40 @@ module.exports = {
         done();
       });
     });
-  },
-  
-  '.pop()': function(done){
+
+  });
+
+  it('pop() test', function(done) {
     var names = new Set('names');
     names.add('tj');
     names.add('aaron');
     names.add('guillermo');
     names.pop(function(err, name){
-      name.should.be.a('string');
+      name.should.be.a.String;
       names.card(function(err, cardinality){
         cardinality.should.equal(2);
         done();
       });
     });
-  },
-  
-  '.random()': function(done){
+
+  });
+
+  it('random() test', function(done) {
     var names = new Set('names');
     names.add('tj');
     names.add('aaron');
     names.add('guillermo');
     names.random(function(err, name){
-      name.should.be.a('string');
+      name.should.be.a.String;
       names.card(function(err, cardinality){
         cardinality.should.equal(3);
         done();
       });
     });
-  },
-  
-  '.union(str)': function(done){
+
+  });
+
+  it('union(str) test', function(done) {
     var online = new Set('online')
       , offline = new Set('offline');
 
@@ -84,12 +91,13 @@ module.exports = {
     online.add('guillermo');
     offline.add('aaron');
     online.union('offline', function(err, res){
-      res.should.eql(['guillermo', 'aaron', 'tj']);
+      res.should.eql(['guillermo', 'tj', 'aaron']);
       done();
     });
-  },
-  
-  '.union(Set)': function(done){
+
+  });
+
+  it('union(Set) test', function(done) {
     var online = new Set('online')
       , offline = new Set('offline');
 
@@ -97,12 +105,13 @@ module.exports = {
     online.add('guillermo');
     offline.add('aaron');
     online.union(offline, function(err, res){
-      res.should.eql(['guillermo', 'aaron', 'tj']);
+      res.should.eql(['guillermo', 'tj', 'aaron']);
       done();
     });
-  },
-  
-  '.diff(str)': function(done){
+
+  });
+
+  it('diff(str) test', function(done) {
     var nums = new Set('nums')
       , other = new Set('other');
 
@@ -118,9 +127,10 @@ module.exports = {
       res.should.eql(['1']);
       done();
     });
-  },
-  
-  '.diff(Set)': function(done){
+
+  });
+
+  it('diff(Set) test', function(done) {
     var nums = new Set('nums')
       , other = new Set('other');
 
@@ -136,9 +146,10 @@ module.exports = {
       res.should.eql(['1']);
       done();
     });
-  },
-  
-  '.inter(str)': function(done){
+
+  });
+
+  it('inter(str) test', function(done) {
     var nums = new Set('nums')
       , other = new Set('other');
 
@@ -155,9 +166,10 @@ module.exports = {
       res.should.eql(['2', '3']);
       done();
     });
-  },
-  
-  '.inter(Set)': function(done){
+
+  });
+
+  it('inter(Set) test', function(done) {
     var nums = new Set('nums')
       , other = new Set('other');
 
@@ -173,5 +185,7 @@ module.exports = {
       res.should.eql(['2', '3']);
       done();
     });
-  }
-};
+
+  });
+
+});

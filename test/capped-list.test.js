@@ -1,20 +1,21 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var CappedList = require('rediskit').CappedList
-  , should = require('should')
-  , redis = require('redis');
+var should = require('should');
+var assert = require('assert');
+var CappedList = require('../').CappedList;
 
-var logs = new CappedList('logs', 5);
+describe('CappedList Test', function(){
 
-module.exports = {
-  setup: function(fn){
-    logs.destroy(fn);
-  },
+  var logs = new CappedList('logs', 5);
+  beforeEach(function(done) {
+    logs.destroy(done);
+  });
 
-  '.rpush(str)': function(done){
+  it('rpush test', function(done) {
     var n = 15;
     while (n--) logs.rpush(n);
     logs.length(function(err, len){
@@ -25,9 +26,9 @@ module.exports = {
         done();
       });
     });
-  },
-  
-  '.lpush(str)': function(done){
+  });
+
+  it('lpush test', function(done) {
     var n = 15;
     while (n--) logs.lpush(n);
     logs.length(function(err, len){
@@ -38,5 +39,6 @@ module.exports = {
         done();
       });
     });
-  }
-};
+  });
+
+});
