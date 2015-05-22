@@ -10,6 +10,9 @@
   "dependencies": {
     "redis": "^0.12.1"
   },
+  "files": [
+    "lib", "Readme.md", "index", "package.json"
+  ],
   "devDependencies": {
     "mocha": "^2.2.5",
     "should": "^6.0.3"
