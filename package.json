@@ -1,6 +1,6 @@
 {
   "name": "rediskit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Redis backed data structures",
   "keywords": [
     "redis",
@@ -11,7 +11,7 @@
     "redis": "^0.12.1"
   },
   "files": [
-    "lib", "Readme.md", "index", "package.json"
+    "lib", "Readme.md", "index.js", "package.json"
   ],
   "devDependencies": {
     "mocha": "^2.2.5",
