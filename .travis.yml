@@ -1,0 +1,11 @@
+language: node_js
+
+node_js:
+- '0.10.16'
+- '0.11.16'
+- '0.12'
+- 'iojs-v1.6.2'
+- 'iojs-v2.0.2'
+
+services:
+- redis-server

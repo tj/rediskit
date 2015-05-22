@@ -1,20 +1,21 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var Queue = require('rediskit').Queue
-  , should = require('should')
-  , redis = require('redis');
+var should = require('should');
+var assert = require('assert');
+var Queue = require('../').Queue;
 
-var queue = new Queue('todos');
+describe('String Test', function(){
 
-module.exports = {
-  setup: function(fn){
-    queue.destroy(fn);
-  },
+  var queue = new Queue('todos');
+  beforeEach(function(done) {
+    queue.destroy(done);
+  });
 
-  '.push(str)': function(done){
+  it('push test', function(done) {
     queue.push('one');
     queue.push('two');
     queue.push('three', function(err){
@@ -25,9 +26,9 @@ module.exports = {
         done();
       });
     });
-  },
-  
-  '.pop()': function(done){
+  });
+
+  it('pop test', function(done) {
     queue.push('one');
     queue.push('two');
     queue.push('three');
@@ -43,5 +44,6 @@ module.exports = {
         });
       })
     });
-  }
-};
+  });
+
+});

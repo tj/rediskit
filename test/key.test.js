@@ -1,36 +1,37 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var String = require('rediskit').String
-  , Key = require('rediskit').Key
-  , should = require('should')
-  , redis = require('redis');
+var should = require('should');
+var assert = require('assert');
+var String = require('../').String;
+var Key = require('../').Key
 
-var name = new String('name');
+describe('Key Test', function(){
 
-module.exports = {
-  setup: function(fn){
-    name.destroy(fn);
-  },
+  var name = new String('name');
+  beforeEach(function(done) {
+    name.destroy(done);
+  });
 
-  '.type()': function(done){
+  it('type test', function(done) {
     name.set('wahoo');
     name.type(function(err, type){
       type.should.equal('string');
       done();
     });
-  },
+  });
 
-  '.ttl()': function(done){
+  it('ttl test', function(done) {
     name.ttl(function(err, seconds){
-      seconds.should.equal(-1);
+      seconds.should.equal(-2);
       done();
     });
-  },
+  });
 
-  '.rename(name, fn)': function(done){
+  it('rename test', function(done) {
     var name = new String('name');
     name.set('tj');
     name.rename('username', function(err){
@@ -38,5 +39,6 @@ module.exports = {
       name.key.should.equal('username');
       done();
     });
-  }
-};
+  });
+
+});

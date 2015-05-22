@@ -1,20 +1,21 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
 
-var Hash = require('rediskit').Hash
-  , should = require('should')
-  , redis = require('redis');
+var should = require('should');
+var assert = require('assert');
+var Hash = require('../').Hash;
 
-var tj = new Hash('users:tj');
+describe('Hash Test', function(){
 
-module.exports = {
-  setup: function(fn){
-    tj.destroy(fn);
-  },
+  var tj = new Hash('users:tj');
+  beforeEach(function(done) {
+    tj.destroy(done);
+  });
 
-  '.set(field, val)': function(done){
+  it('set test', function(done) {
     tj.set('name', 'tj');
     tj.set('age', 23);
     should.equal(true, tj.getall == tj.all, 'getall() all() alias missing');
@@ -22,16 +23,16 @@ module.exports = {
       obj.should.eql({ name: 'tj', age: '23' });
       done();
     });
-  },
-  
-  '.has(field, fn)': function(done){
+  });
+
+  it('has test', function(done) {
     tj.has('name', function(err, res){
       res.should.equal(0);
       done();
     });
-  },
-  
-  '.del(field)': function(done){
+  });
+
+  it('del test', function(done) {
     tj.set('name', 'tj');
     tj.set('age', 23);
     should.equal(true, tj.del == tj.delete, 'del() delete() alias missing');
@@ -40,18 +41,18 @@ module.exports = {
       obj.should.eql({ name: 'tj' });
       done();
     });
-  },
-  
-  '.length()': function(done){
+  });
+
+  it('length test', function(done) {
     tj.set('first', 'tj');
     tj.set('last', 'holowaychuk');
     tj.length(function(err, len){
       len.should.equal(2);
       done();
     });
-  },
-  
-  '.fields()': function(done){
+  });
+
+  it('fields test', function(done) {
     tj.set('first', 'tj');
     tj.set('last', 'holowaychuk');
     should.equal(true, tj.fields == tj.keys, 'keys() fields() alias missing');
@@ -59,9 +60,9 @@ module.exports = {
       fields.should.eql(['first', 'last']);
       done();
     });
-  },
-  
-  '.vals()': function(done){
+  });
+
+  it('vals test', function(done) {
     tj.set('first', 'tj');
     tj.set('last', 'holowaychuk');
     should.equal(true, tj.values == tj.vals, 'vals() values() alias missing');
@@ -69,5 +70,5 @@ module.exports = {
       vals.should.eql(['tj', 'holowaychuk']);
       done();
     });
-  }
-};
+  });
+});
