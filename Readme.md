@@ -67,7 +67,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [npm-url]: https://npmjs.org/package/rediskit
 [npm-image]: https://badge.fury.io/js/rediskit.svg
-[travis-url]: https://travis-ci.org/zj8487/rediskit
-[travis-image]: https://travis-ci.org/zj8487/rediskit.svg?branch=master
-[daviddm-url]: https://david-dm.org/zj8487/rediskit.svg?theme=shields.io
-[daviddm-image]: https://david-dm.org/zj8487/rediskit
+[travis-url]: https://travis-ci.org/tj/rediskit
+[travis-image]: https://travis-ci.org/tj/rediskit.svg?branch=master
+[daviddm-url]: https://david-dm.org/tj/rediskit.svg?theme=shields.io
+[daviddm-image]: https://david-dm.org/tj/rediskit
